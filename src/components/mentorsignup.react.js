@@ -1,6 +1,6 @@
 import React, {  Component } from 'react';
 
-export default class YouthSignup extends Component {
+export default class MentorSignup extends Component {
 
   constructor(props){
     super(props);
@@ -9,7 +9,7 @@ export default class YouthSignup extends Component {
   render(){
     return (
       <form>
-        <h3>Youth Signup</h3>
+        <h3>Mentor Signup</h3>
         <div>
           <label>Name</label>
           <input type="text" />
@@ -31,11 +31,15 @@ export default class YouthSignup extends Component {
           <input type="text" />
         </div>
         <div>
+          <label>LinkedIn Profile URL</label>
+          <input type="text" />
+        </div>
+        <div>
           <label>About Yourself</label>
           <textarea />
         </div>
         <div>
-          <label>Organization or Caregiver</label>
+          <label>Organization</label>
           <input type="text" />
         </div>
         <button type="submit">Submit</button>
