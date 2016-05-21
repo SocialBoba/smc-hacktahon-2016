@@ -1,4 +1,4 @@
-import React, {  Component } from 'react';
+import React, {  Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { signupYouth } from '../actions/signup.action';
 
@@ -14,8 +14,13 @@ class YouthSignup extends Component {
       postal: '',
       intro: '',
       group: '',
-      referral: ''
+      referral: '',
+      password: ''
     };
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
   }
 
   _handleChange = (event) => {
@@ -26,14 +31,20 @@ class YouthSignup extends Component {
 
   _handleSubmit = (event) => {
     event.preventDefault();
-    const {name, email, city, state, postal, intro, group, referral} = this.state;
-    if(name && email && city && state && postal && referral) {
-      this.props.signupYouth({name, email, city, state, postal, intro, group, referral});
+    const {name, password, email, city, state, postal, intro, group, referral} = this.state;
+    if(name && password && email && city && state && postal && referral) {
+      this.props.signupYouth({name, password, email, city, state, postal, intro, group, referral})
+        .then((i) => {
+          localStorage.setItem('token', i.payload.data.token);
+          localStorage.setItem('id', i.payload.data.summary.youth_id);
+          console.log(2);
+          this.context.router.push('/youthprofile');
+        });
     }
   }
   
   render(){
-    const {name, email, city, state, postal, intro, group, referral} = this.state;
+    const {name, password, email, city, state, postal, intro, group, referral} = this.state;
 
     return (
       <form onSubmit={this._handleSubmit}>
@@ -41,6 +52,10 @@ class YouthSignup extends Component {
         <div>
           <label>Name</label>
           <input type="text" name="name" value={name} onChange={this._handleChange} />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" value={password} onChange={this._handleChange}/>
         </div>
         <div>
           <label>Email</label>
@@ -76,4 +91,13 @@ class YouthSignup extends Component {
   }
 }
 
-export default connect(null, {signupYouth})(YouthSignup);
+function mapStateToProps(state) {
+  return {
+    location: state.signup.location,
+    name: state.signup.name,
+    socialLinks: state.signup['social_links'],
+    youthID: state.signup['youth_id']
+  };
+}
+
+export default connect(mapStateToProps, {signupYouth})(YouthSignup);

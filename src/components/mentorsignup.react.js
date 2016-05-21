@@ -12,7 +12,8 @@ export default class MentorSignup extends Component {
       postal: '',
       linkedin: '',
       intro: '',
-      group: ''
+      group: '',
+      password: ''
     };
   }
 
@@ -28,11 +29,15 @@ export default class MentorSignup extends Component {
         <h3>Mentor Signup</h3>
         <div>
           <label>Name</label>
-          <input type="text" />
+          <input type="text" name="name" />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" />
         </div>
         <div>
           <label>City</label>
-          <input type="text" />
+          <input type="text" name="city" />
         </div>
         <div>
           <label>State</label>
