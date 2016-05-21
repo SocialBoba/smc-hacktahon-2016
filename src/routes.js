@@ -1,16 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/app.react';
-
-import Greeting from './components/greeting.react';
-
-function Greeting1() {
-  return <div>HIiiiiiiiii!</div>;
-}
+import HomePage from './components/homepage.react';
+import SignUp from './components/signup.react';
+import LogIn from './components/login.react';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Greeting1} />
-    <Route path="/greet" component={Greeting} />
+    <IndexRoute component={HomePage} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/login" component={LogIn} />
   </Route>
 );
