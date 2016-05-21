@@ -22,9 +22,10 @@ export default class HomePage extends Component {
   
   render(){
     return (
-      <div>
-        <button type="button" onClick={this._handleClick}>Log In</button>
-        <button type="button" onClick={this._handleClick}>Sign Up</button>
+      <div className="homepage">
+        <img className="logo" src={"./style/images/sanmateo_hackthon-logo.png"}/>
+        <div className="button"><button type="button" className="login button-home" onClick={this._handleClick}>Log In</button>
+        <button type="button" className="signup button-home" onClick={this._handleClick}>Sign Up</button></div>
       </div>
     );
   }
