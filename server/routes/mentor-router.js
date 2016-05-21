@@ -25,8 +25,7 @@ mentor_router.post("/", function(req, res) {
   var data = req.body;
 });
 
-var pwd_secret = require(__dirname + '/../config/config.json').pwd_secret;
-var jwt_secret = require(__dirname + '/../config/config.json').jwt_secret;
+var jwt_secret = require(__dirname + '/../config/secrets.json').jwt_secret;
 
 mentor_router.post("/login", function(req, res) {
   var data = req.body;
