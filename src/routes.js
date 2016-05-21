@@ -17,6 +17,7 @@ export default (
     <Route path="/login" component={LogIn} />
     <Route path="/mentorconnect" component={MentorConnect} />
     <Route path="/youthconnect" component={YouthConnect} />
+    <Route path="/youthprofile" component={YouthConnect} />
     <Route path ="/testing" component={YouthProfile} />
   </Route>
 );
