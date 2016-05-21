@@ -23,10 +23,12 @@ mentor_router.get("/:id", function(req, res) {
 
 mentor_router.post("/", function(req, res) {
   var data = req.body;
+  models.Mentor.create(data).then(function(mentor) {
+    res.send(MentorSummary(mentor));
+  });
 });
 
-var pwd_secret = require(__dirname + '/../config/config.json').pwd_secret;
-var jwt_secret = require(__dirname + '/../config/config.json').jwt_secret;
+var jwt_secret = require(__dirname + '/../config/secrets.json').jwt_secret;
 
 mentor_router.post("/login", function(req, res) {
   var data = req.body;
@@ -47,8 +49,17 @@ mentor_router.post("/login", function(req, res) {
               message: ''
             }
           });
+
+          return ;
       }
     }
+
+    res.status(403).send({
+      message: "Wrong email/password",
+      code: "auth-failure"
+    });
+
+    return ;
   });
 });
 
@@ -86,6 +97,5 @@ var Mentor = function(mentor) {
     profile_pic_url: mentor.profile_pic_url
   }
 };
-
 
 module.exports = mentor_router;

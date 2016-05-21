@@ -58,6 +58,12 @@ paths:
           in: formData
           description: State of the mentor located at
           required: true
+        - name: postal
+          type: number
+          format: int32
+          in: formData
+          required: true
+          description: A valid US postal code
         - name: email
           type: string
           in: formData
@@ -222,6 +228,12 @@ paths:
           in: formData
           description: State of the youth located at
           required: true
+        - name: postal
+          type: number
+          format: int32
+          in: formData
+          required: true
+          description: A valid US postal code
         - name: email
           type: string
           in: formData
@@ -510,7 +522,7 @@ definitions:
   UnauthorizedError:
     type: object
     properties:
-      reason:
+      message:
         type: string
       code:
         type: string
