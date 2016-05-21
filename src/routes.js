@@ -8,6 +8,7 @@ import YouthSignup from './components/youthsignup.react';
 import MentorSignup from './components/mentorsignup.react';
 import YouthConnect from './components/youthconnect.react';
 import MentorConnect from './components/mentorconnect.react';
+import YouthProfile from './components/youthprofile.react';
 
 export default (
   <Route path="/" component={App}>
@@ -16,6 +17,6 @@ export default (
     <Route path="/login" component={LogIn} />
     <Route path="/mentorconnect" component={MentorConnect} />
     <Route path="/youthconnect" component={YouthConnect} />
-    <Route path ="/testing" component={MentorConnect} />
+    <Route path ="/testing" component={YouthProfile} />
   </Route>
 );
