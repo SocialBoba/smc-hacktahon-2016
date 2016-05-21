@@ -25,7 +25,7 @@ paths:
         - Mentors
       parameters:
         - $ref: '#/parameters/limitParam'
-      responses:  
+      responses:
         "200":
           description: An array of mentors
           schema:
@@ -95,7 +95,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /mentors/{mentor_id}:
     get:
       summary: Get the information of the mentor
@@ -117,7 +117,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /mentors/login:
     post:
       summary: Login as a mentor
@@ -149,7 +149,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  
+
   /mentors/{mentor_id}/mentees:
     get:
       summary: Get the mentee list of the mentor
@@ -180,7 +180,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /youths:
     get:
       summary: List of youths signed up with SocialBoba
@@ -189,7 +189,7 @@ paths:
         - Youth
       parameters:
         - $ref: '#/parameters/limitParam'
-      responses:  
+      responses:
         "200":
           description: An array of youths
           schema:
@@ -227,11 +227,16 @@ paths:
           in: formData
           description: Email of the youth
           required: true
+        - name: referral_code
+          type: string
+          in: formData
+          description: A valid referral code distributed by SocialBoba
+          required: true
         - name: linkedin_url
           type: string
           in: formData
           description: LinkedIn url of the youth
-          required: true
+          required: false
         - name: youtube_url
           type: string
           in: formData
@@ -254,7 +259,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  
+
   /youths/{youth_id}:
     get:
       summary: Get the information of the youth
@@ -276,7 +281,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  
+
   /youths/login:
     post:
       summary: Login as a youth
@@ -308,7 +313,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  
+
   /youths/{youth_id}/mentors:
     get:
       summary: Get the mentor list of the youth
@@ -339,7 +344,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
   /youths/{youth_id}/match:
     post:
       summary: Make a match with a mentor, if haven't matched one before
@@ -379,7 +384,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-            
+
 definitions:
   MentorSummary:
     type: object
@@ -514,7 +519,7 @@ definitions:
         type: string
       code:
         type: string
-        
+
 parameters:
   limitParam:
     name: limit
@@ -523,3 +528,4 @@ parameters:
     required: false
     type: integer
     format: int32
+    
