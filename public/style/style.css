@@ -99,8 +99,11 @@ ul{
   text-align: left;
   width: 20%;
 }
+.youth-profile span{
+  color: #fff;
+}
 
 li {
-    color: #38939b;
+    color: #fff;
     list-style-type: none;
 }
