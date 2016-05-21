@@ -31,10 +31,6 @@ export default class MentorSignup extends Component {
           <input type="text" />
         </div>
         <div>
-          <label>Email</label>
-          <input type="text" />
-        </div>
-        <div>
           <label>City</label>
           <input type="text" />
         </div>
@@ -43,7 +39,11 @@ export default class MentorSignup extends Component {
           <input type="text" />
         </div>
         <div>
-          <label>Postal</label>
+          <label>Email</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label>Zip Code</label>
           <input type="text" />
         </div>
         <div>

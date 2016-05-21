@@ -13,6 +13,10 @@ class LogIn extends Component {
     };
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   _handleChange = (event) => {
     let obj = {};
     obj[event.target.name] = event.target.value;
@@ -29,6 +33,7 @@ class LogIn extends Component {
           .then((i) => {
             localStorage.setItem('token', i.payload.data.token);
             localStorage.setItem('id', i.payload.data.id);
+            this.context.roter.push('/youthconnect');
           });
       }
       else {
@@ -36,6 +41,7 @@ class LogIn extends Component {
           .then((i) => {
             localStorage.setItem('token', i.payload.data.token);
             localStorage.setItem('id', i.payload.data.id);
+            this.context.roter.push('/mentorconnect');
           });
       }
     }
