@@ -34,6 +34,7 @@
     "moment-timezone": "^0.5.4",
     "pg": "^4.5.5",
     "pg-hstore": "^2.3.2",
+    "nodemon": "^1.9.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.4.0",

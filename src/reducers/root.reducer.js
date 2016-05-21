@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
+import Login from './login.reducer';
 
-function test(){
-  return {book: 1};
-}
 const rootReducer = combineReducers({
-  list: test
+  login: Login
 });
 
 export default rootReducer;
