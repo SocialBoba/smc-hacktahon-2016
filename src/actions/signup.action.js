@@ -4,7 +4,8 @@ export const SIGNUP_YOUTH = 'SIGNUP_YOUTH';
 export const SIGNUP_MENTOR = 'SIGNUP_MENTOR';
 
 export function signupYouth(data) {
-  const request = Axios.post('/youths', data);
+  console.log(data);
+  const request = Axios.post('/api/v1/youths', data);
 
   return {
     type: SIGNUP_YOUTH,
@@ -13,7 +14,7 @@ export function signupYouth(data) {
 }
 
 export function signupMentor(data) {
-  const request = Axios.post('/mentors', data);
+  const request = Axios.post('/api/v1/mentors', data);
 
   return {
     type: SIGNUP_MENTOR,

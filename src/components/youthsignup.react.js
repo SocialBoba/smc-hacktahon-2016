@@ -14,7 +14,8 @@ class YouthSignup extends Component {
       postal: '',
       intro: '',
       group: '',
-      referral: ''
+      referral: '',
+      password: ''
     };
   }
 
@@ -26,14 +27,14 @@ class YouthSignup extends Component {
 
   _handleSubmit = (event) => {
     event.preventDefault();
-    const {name, email, city, state, postal, intro, group, referral} = this.state;
-    if(name && email && city && state && postal && referral) {
-      this.props.signupYouth({name, email, city, state, postal, intro, group, referral});
+    const {name, password, email, city, state, postal, intro, group, referral} = this.state;
+    if(name && password && email && city && state && postal && referral) {
+      this.props.signupYouth({name, password, email, city, state, postal, intro, group, referral});
     }
   }
   
   render(){
-    const {name, email, city, state, postal, intro, group, referral} = this.state;
+    const {name, password, email, city, state, postal, intro, group, referral} = this.state;
 
     return (
       <form onSubmit={this._handleSubmit}>
@@ -41,6 +42,10 @@ class YouthSignup extends Component {
         <div>
           <label>Name</label>
           <input type="text" name="name" value={name} onChange={this._handleChange} />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" value={password} onChange={this._handleChange}/>
         </div>
         <div>
           <label>Email</label>
