@@ -1,5 +1,7 @@
 "use strict";
 
+var models = require("./models");
+
 var express = require('express');
 var port = process.env.PORT || 3000;
 

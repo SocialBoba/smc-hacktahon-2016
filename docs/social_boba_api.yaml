@@ -394,7 +394,7 @@ definitions:
       - location
     properties:
       mentor_id:
-        type: string
+        type: number
       name:
         type: string
       location:
@@ -410,7 +410,7 @@ definitions:
       - location
     properties:
       mentor_id:
-        type: string
+        type: number
       name:
         type: string
       email:
@@ -456,7 +456,7 @@ definitions:
       - location
     properties:
       youth_id:
-        type: string
+        type: number
       name:
         type: string
       location:
@@ -472,7 +472,7 @@ definitions:
       - location
     properties:
       youth_id:
-        type: string
+        type: number
       name:
         type: string
       email:
@@ -487,6 +487,16 @@ definitions:
         type: string
       profile_pic_url:
         type: string
+  SuccessOpWithToken:
+    type: object
+    properties:
+      id:
+        type: number
+      result:
+        $ref: '#/definitions/SuccessOpResult'
+      token:
+        type: string
+        description: JSON Web Token
   SuccessOpResult:
     type: object
     required:
@@ -497,14 +507,6 @@ definitions:
         default: "success"
       message:
         type: string
-  SuccessOpWithToken:
-    type: object
-    properties:
-      result:
-        $ref: '#/definitions/SuccessOpResult'
-      token:
-        type: string
-        description: JSON Web Token
   UnauthorizedError:
     type: object
     properties:
@@ -528,4 +530,3 @@ parameters:
     required: false
     type: integer
     format: int32
-    
