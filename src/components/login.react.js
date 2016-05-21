@@ -22,6 +22,13 @@ class LogIn extends Component {
   _handleSubmit = (event) => {
     event.preventDefault();
     const {email, password, type} = this.state;
+    const {loginYouth, loginMentor} = this.props;
+    if(type === "youth") {
+      this.props.loginYouth();
+    }
+    else {
+      this.props.loginMentor();
+    }
   }
   
   render(){
