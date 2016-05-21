@@ -29,7 +29,16 @@ mentor_router.post("/", function(req, res) {
 
   data.password_hashed = hash;
   models.Mentor.create(data).then(function(mentor) {
-    res.send(MentorSummary(mentor));
+    var token = jwt.sign({
+      type: 'mentor',
+      id: mentor.id,
+      sub: 'auth-login'
+    }, jwt_secret);
+
+    res.send({
+      summary: MentorSummary(mentor),
+      token: token
+    });
   });
 });
 

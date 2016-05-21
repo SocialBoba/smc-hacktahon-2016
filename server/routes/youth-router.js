@@ -29,7 +29,16 @@ youth_router.post("/", function(req, res) {
 
   data.password_hashed = hash;
   models.Youth.create(data).then(function(youth) {
-    res.send(YouthSummary(youth));
+    var token = jwt.sign({
+      type: 'youth',
+      id: youth.id,
+      sub: 'auth-login'
+    }, jwt_secret);
+
+    res.send({
+      summary: YouthSummary(youth),
+      token: token
+    });
   });
 });
 
