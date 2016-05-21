@@ -5,12 +5,13 @@ import HomePage from './components/homepage.react';
 import SignUp from './components/signup.react';
 import LogIn from './components/login.react';
 import YouthSignup from './components/youthsignup.react';
+import MentorSignup from './components/mentorsignup.react';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
     <Route path="/signup" component={SignUp} />
     <Route path="/login" component={LogIn} />
-    <Route path ="/testing" component={YouthSignup} />
+    <Route path ="/testing" component={MentorSignup} />
   </Route>
 );
