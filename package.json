@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^0.9.1",
     "babel-preset-stage-1": "^6.1.18",
+    "body-parser": "^1.15.1",
     "bower": "^1.7.7",
     "express": "^4.13.4",
     "lodash": "^3.10.1",
