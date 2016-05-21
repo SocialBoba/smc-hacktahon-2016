@@ -8,7 +8,7 @@ export default class YouthSignup extends Component {
   
   render(){
     return (
-      <form className="signup">
+      <form>
         <h3>Youth Signup</h3>
         <div>
           <label>Name</label>

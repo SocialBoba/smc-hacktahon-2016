@@ -8,8 +8,7 @@ export default class MentorSignup extends Component {
   
   render(){
     return (
-      <form className="signup">
-      <img className="logo" src={"./style/images/sanmateo_hackthon-logo.png"}/>
+      <form>
         <h3>Mentor Signup</h3>
         <div>
           <label>Name</label>
