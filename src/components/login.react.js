@@ -46,12 +46,8 @@ class LogIn extends Component {
 
     return (
       <div>
-<<<<<<< HEAD
         <img className="logo" src={"./style/images/sanmateo_hackthon-logo.png"}/>
         <form onSubmit={this._handleSubmit} className="login">
-=======
-        <form onSubmit={this._handleSubmit}>
->>>>>>> master-dev
           Email:<br />
           <input type="text" name="email" value={email} onChange={this._handleChange} /><br />
           Password:<br />
@@ -66,11 +62,4 @@ class LogIn extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    id: state.login.id,
-    token: state.login.token
-  };
-}
-
-export default connect(mapStateToProps, {loginYouth, loginMentor})(LogIn);
+export default connect(null, {loginYouth, loginMentor})(LogIn);
