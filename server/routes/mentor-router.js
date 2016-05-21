@@ -23,6 +23,11 @@ mentor_router.get("/:id", function(req, res) {
 
 mentor_router.post("/", function(req, res) {
   var data = req.body;
+
+  var salt = bcrypt.genSaltSync(10);
+  var hash = bcrypt.hashSync(data.password, salt);
+
+  data.password_hashed = hash;
   models.Mentor.create(data).then(function(mentor) {
     res.send(MentorSummary(mentor));
   });
