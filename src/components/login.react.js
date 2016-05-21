@@ -28,12 +28,7 @@ class LogIn extends Component {
     const {email, password} = this.state;
     return (
       <div>
-<<<<<<< HEAD
-        <img className="logo" src={"./style/images/sanmateo_hackthon-logo.png"}/>
-        <form onSubmit={this._handleSubmit} className="login">
-=======
         <form onSubmit={this._handleSubmit}>
->>>>>>> master-dev
           Email:<br />
           <input type="text" name="email" value={email} onChange={this._handleChange} /><br />
           Password:<br />
