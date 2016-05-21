@@ -29,7 +29,10 @@ class YouthSignup extends Component {
     event.preventDefault();
     const {name, password, email, city, state, postal, intro, group, referral} = this.state;
     if(name && password && email && city && state && postal && referral) {
-      this.props.signupYouth({name, password, email, city, state, postal, intro, group, referral});
+      this.props.signupYouth({name, password, email, city, state, postal, intro, group, referral})
+        .then((i) => {
+          localStorage.setItem('token', i.payload.data.token);
+        });
     }
   }
   
@@ -81,4 +84,13 @@ class YouthSignup extends Component {
   }
 }
 
-export default connect(null, {signupYouth})(YouthSignup);
+function mapStateToProps(state) {
+  return {
+    location: state.signup.location,
+    name: state.signup.name,
+    socialLinks: state.signup['social_links'],
+    youthID: state.signup['youth_id']
+  };
+}
+
+export default connect(mapStateToProps, {signupYouth})(YouthSignup);
