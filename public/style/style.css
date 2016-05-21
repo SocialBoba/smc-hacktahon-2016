@@ -1,0 +1,36 @@
+.logo{
+  width: 30%;
+  margin-bottom: 25px;
+}
+.homepage{
+  text-align: center;
+  position: relative;
+  height: 100%;
+}
+.button-home{
+  display: inline-block;
+  
+  color: #fff;
+  padding: 9px 14px 9px 15.5px;
+  margin-top: 27px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.homepage .login{
+  position: absolute;
+  bottom: -14%;
+  left: 31%;
+  background-color: #702C6A;
+}
+.homepage .signup{
+  background-color: #eea267;
+  position: absolute;
+  bottom: -14%;
+  left: 58%;
+}
