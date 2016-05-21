@@ -19,7 +19,6 @@ export default class MentorConnect extends Component {
     let studentList = ['Luke Skywalker', 'Leia Skywalker', 'Han Solo', 'Anakin Skywalker']; // Replace with props
 
     if (hasMatchedWithMentor) {
-    	console.log('**hasMatchedWithmentor***')
       return <div>
       	<div>Students:</div>
       	{studentList.map( (student) => {
