@@ -96,7 +96,12 @@ paths:
         "200":
           description: New mentor successfully signed up
           schema:
-            $ref: '#/definitions/MentorSummary'
+            type: object
+            properties:
+              summary:
+                $ref: '#/definitions/MentorSummary'
+              token:
+                type: string
         default:
           description: Unexpected error
           schema:
@@ -266,7 +271,12 @@ paths:
         "200":
           description: New youth successfully signed up
           schema:
-            $ref: '#/definitions/YouthSummary'
+            type: object
+            properties:
+              summary:
+                $ref: '#/definitions/YouthSummary'
+              token:
+                type: string
         default:
           description: Unexpected error
           schema:
