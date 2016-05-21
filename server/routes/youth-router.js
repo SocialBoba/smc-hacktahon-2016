@@ -77,6 +77,41 @@ youth_router.post("/login", function(req, res) {
   });
 });
 
+var MentorSummary = function(mentor) {
+  return {
+    mentor_id: mentor.id,
+    name: mentor.name,
+    location: {
+      city: mentor.city,
+      state: mentor.state,
+      postal: mentor.postal,
+    },
+    social_links: {
+      linkedin_url: mentor.linkedin_url,
+      youtube_url: mentor.youtube_url,
+    },
+  }
+};
+
+var Mentor = function(mentor) {
+  return {
+    mentor_id: mentor.id,
+    name: mentor.name,
+    location: {
+      city: mentor.city,
+      state: mentor.state,
+      postal: mentor.postal,
+    },
+    social_links: {
+      linkedin_url: mentor.linkedin_url,
+      youtube_url: mentor.youtube_url,
+    },
+    intro: mentor.intro,
+    org: mentor.org,
+    profile_pic_url: mentor.profile_pic_url
+  }
+};
+
 var YouthSummary = function(youth) {
   return {
     youth_id: youth.id,

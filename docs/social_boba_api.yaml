@@ -161,7 +161,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /mentors/{mentor_id}/mentees:
+  /mentors/{mentor_id}/mentee:
     get:
       summary: Get the mentee list of the mentor
       description: (WIP)

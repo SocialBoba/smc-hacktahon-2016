@@ -77,6 +77,33 @@ mentor_router.post("/login", function(req, res) {
   });
 });
 
+mentor_router.get("/:id/mentee", function(req, res) {
+  var token = req.get("Authorization").split("Bearer ")[1];
+  if (token) {
+    try {
+      var decoded = jwt.verify(token, jwt_secret);
+      if (decoded) {
+        if (decoded.type == 'mentor' && decoded.id == req.params.id) {
+          models.Mentor.findById(req.params.id).then(function(mentor) {
+            var mentee = mentor.getMentee().then(function(m) {
+              var result = _.map(m, YouthSummary);
+              res.send(result);
+              return ;
+            });
+          });
+        }
+      }
+    } catch(err) {}
+    //
+    // res.status(403).send({
+    //   message: "Mentee fetch error",
+    //   code: "auth-failure"
+    // });
+  }
+
+  return token;
+});
+
 var MentorSummary = function(mentor) {
   return {
     mentor_id: mentor.id,
@@ -109,6 +136,41 @@ var Mentor = function(mentor) {
     intro: mentor.intro,
     org: mentor.org,
     profile_pic_url: mentor.profile_pic_url
+  }
+};
+
+var YouthSummary = function(youth) {
+  return {
+    youth_id: youth.id,
+    name: youth.name,
+    location: {
+      city: youth.city,
+      state: youth.state,
+      postal: youth.postal,
+    },
+    social_links: {
+      linkedin_url: youth.linkedin_url,
+      youtube_url: youth.youtube_url,
+    },
+  }
+};
+
+var Youth = function(youth) {
+  return {
+    youth_id: youth.id,
+    name: youth.name,
+    location: {
+      city: youth.city,
+      state: youth.state,
+      postal: youth.postal,
+    },
+    social_links: {
+      linkedin_url: youth.linkedin_url,
+      youtube_url: youth.youtube_url,
+    },
+    intro: youth.intro,
+    org: youth.org,
+    profile_pic_url: youth.profile_pic_url
   }
 };
 
