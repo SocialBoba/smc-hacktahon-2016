@@ -1,4 +1,4 @@
-import React, {  Component } from 'react';
+import React, {  Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { signupYouth } from '../actions/signup.action';
 
@@ -19,6 +19,10 @@ class YouthSignup extends Component {
     };
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   _handleChange = (event) => {
     let obj = {};
     obj[event.target.name] = event.target.value;
@@ -32,6 +36,9 @@ class YouthSignup extends Component {
       this.props.signupYouth({name, password, email, city, state, postal, intro, group, referral})
         .then((i) => {
           localStorage.setItem('token', i.payload.data.token);
+          localStorage.setItem('id', i.payload.data.summary.youth_id);
+          console.log(2);
+          this.context.router.push('/youthprofile');
         });
     }
   }
