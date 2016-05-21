@@ -5,44 +5,40 @@ export default class YouthSignup extends Component {
   constructor(props){
     super(props);
   }
-
-  _handleSubmit = () => {
-
-  }
   
   render(){
     return (
-      <form onSubmit={handleSubmit(this._handleSubmit)}>
+      <form>
         <h3>Youth Signup</h3>
-        <div className={{}}>
+        <div>
           <label>Name</label>
-          <input type="text" className="form-control" {...title} />
+          <input type="text" />
         </div>
-        <div className={this._formClasses(categories)}>
+        <div>
           <label>Email</label>
-          <input type="text" className="form-control" {...categories} />
+          <input type="text" />
         </div>
-        <div className={this._formClasses(categories)}>
+        <div>
           <label>City</label>
-          <input type="text" className="form-control" {...categories} />
+          <input type="text" />
         </div>
-        <div className={this._formClasses(categories)}>
+        <div>
           <label>State</label>
-          <input type="text" className="form-control" {...categories} />
+          <input type="text" />
         </div>
-        <div className={this._formClasses(categories)}>
+        <div>
           <label>Postal</label>
-          <input type="text" className="form-control" {...categories} />
+          <input type="text" />
         </div>
-        <div className={this._formClasses(content)}>
+        <div>
           <label>Intro</label>
-          <textarea className="form-control" {...content} />
+          <textarea />
         </div>
-        <div className={this._formClasses(categories)}>
+        <div>
           <label>Organization</label>
-          <input type="text" className="form-control" {...categories} />
+          <input type="text" />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit">Submit</button>
       </form>
     );
   }
