@@ -33,7 +33,7 @@ class LogIn extends Component {
           .then((i) => {
             localStorage.setItem('token', i.payload.data.token);
             localStorage.setItem('id', i.payload.data.id);
-            this.context.roter.push('/youthconnect');
+            this.context.router.push('/youthconnect');
           });
       }
       else {
@@ -41,7 +41,7 @@ class LogIn extends Component {
           .then((i) => {
             localStorage.setItem('token', i.payload.data.token);
             localStorage.setItem('id', i.payload.data.id);
-            this.context.roter.push('/mentorconnect');
+            this.context.router.push('/mentorconnect');
           });
       }
     }
