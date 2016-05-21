@@ -7,24 +7,18 @@ export default class SignUp extends Component {
   constructor(props){
     super(props);
     this.state = {
-      signupType: 'youth'
+      signupType: 'Youth'
     }
   }
 
-  _setYouthForm = () => {
-    this.setState({
-      signupType: 'youth'
-    })
-  }
-
-  _setMentorForm = () => {
-    this.setState({
-      signupType: 'mentor'
-    })
+  _handleClick = (event) => {
+    let obj = {};
+    obj['signupType'] = event.target.innerHTML;
+    this.setState(obj);
   }
 
   _renderSignup = () => {
-    if (this.state.signupType === 'youth') {
+    if (this.state.signupType === 'Youth') {
       return <YouthSignup/>
     } else {
       return <MentorSignup/>
@@ -34,8 +28,8 @@ export default class SignUp extends Component {
   render(){
     return (
       <div>
-        <div onClick={this._setYouthForm}>Youth</div>
-        <div onClick={this._setMentorForm}>Mentor</div>
+        <div onClick={this._handleClick}>Youth</div>
+        <div onClick={this._handleClick}>Mentor</div>
         {this._renderSignup()}
       </div>
     );

@@ -7,7 +7,8 @@ module.exports = {
     return queryInterface.bulkInsert('Mentors', [
       {
         name: 'Matthew E. McKim',
-        email: 'MatthewEMcKim@ggmail.io',
+        email: 'me@ggmail.io',
+        password_hashed: '$2a$10$m0WSYrp/vXwk2EOH7oLGZOTjyEmxifakKc2he9aETI9pyFL3V4Sk.',
         city: 'San Mateo',
         state: 'CA',
         postal: 94401,

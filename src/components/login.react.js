@@ -22,13 +22,32 @@ class LogIn extends Component {
   _handleSubmit = (event) => {
     event.preventDefault();
     const {email, password, type} = this.state;
+    const {loginYouth, loginMentor, token} = this.props;
+    if(email && password) {
+      if(type === "youth") {
+        this.props.loginYouth({email, password})
+          .then((i) => {
+            localStorage.setItem('token', i.payload.data.token);
+            localStorage.setItem('id', i.payload.data.id);
+          });
+      }
+      else {
+        this.props.loginMentor({email, password})
+          .then((i) => {
+            localStorage.setItem('token', i.payload.data.token);
+            localStorage.setItem('id', i.payload.data.id);
+          });
+      }
+    }
   }
   
   render(){
     const {email, password} = this.state;
+
     return (
       <div>
-        <form onSubmit={this._handleSubmit}>
+        <img className="logo" src={"./style/images/sanmateo_hackthon-logo.png"}/>
+        <form onSubmit={this._handleSubmit} className="login">
           Email:<br />
           <input type="text" name="email" value={email} onChange={this._handleChange} /><br />
           Password:<br />
