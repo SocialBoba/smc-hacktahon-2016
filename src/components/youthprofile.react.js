@@ -22,18 +22,21 @@ export default class YouthProfile extends Component {
   render(){
     let name = "Luke Skywalker"; // Replace with props
     let location = "San Mateo"; // Replace with props
-    let profilePicUrl = "https://cdn2.vox-cdn.com/thumbor/hLZC1wKGNINuWx5hxGB2ZdptKTs=/0x0:1920x1080/1600x900/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/47651097/skywalker-luke.0.0.jpg" // Replace with props
+    let profilePicUrl = "http://i.dailymail.co.uk/i/pix/2012/07/13/article-2173229-0075AB9D00000258-267_224x423.jpg" // Replace with props
     let mentor = "Obi Wan Kenobi";
 
     return (
-      <div>
+      <div className="youth-profile profile">
+        <section><img className="profile-logo" src={"./style/images/sanmateo_hackthon-logo.png"}/> <p>County of San Mateo </p><p> MentorCare</p></section>
         <div>Hello {name}</div>
-        <img src={profilePicUrl}/>
+        <img className="youth-pic" src={profilePicUrl}/>
         <div>Location: {location}</div>
         <div>Mentor: {mentor}</div>
-        <button onClick={this._handleReviewButton}>Review</button>
-        <button onClick={this._handleMeetingButton}>Meeting</button>
-        <button onClick={this._handleChatButton}>Chat</button>
+        <div className="button">
+          <button onClick={this._handleReviewButton}>Review</button>
+          <button onClick={this._handleMeetingButton}>Meeting</button>
+          <button onClick={this._handleChatButton}>Chat</button>
+        </div>
       </div>
     );
   }

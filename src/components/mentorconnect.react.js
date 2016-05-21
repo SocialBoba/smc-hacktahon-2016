@@ -37,7 +37,7 @@ export default class MentorConnect extends Component {
     let profilePicUrl = "http://vignette4.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg/revision/latest/scale-to-width-down/500?cb=20111115052816" // Replace with props
 
     return (
-      <div className="mentor-profile">
+      <div className="mentor-profile profile">
         <section><img className="profile-logo" src={"./style/images/sanmateo_hackthon-logo.png"}/> <p>County of San Mateo </p><p> MentorCare</p></section>
         <img className="profile-pic" src={profilePicUrl}/>
         <ul>
