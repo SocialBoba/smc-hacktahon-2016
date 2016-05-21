@@ -4,7 +4,23 @@ export default class MentorSignup extends Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      name: '',
+      email: '',
+      city: '',
+      state: '',
+      postal: '',
+      linkedin: '',
+      intro: '',
+      group: ''
+    };
   }
+
+  _handleChange = (event) => {
+    let obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  };
   
   render(){
     return (
@@ -35,7 +51,7 @@ export default class MentorSignup extends Component {
           <input type="text" />
         </div>
         <div>
-          <label>About Yourself</label>
+          <label>Introduce Yourself</label>
           <textarea />
         </div>
         <div>
