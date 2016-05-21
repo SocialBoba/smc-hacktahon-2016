@@ -12,6 +12,6 @@ export default (
     <IndexRoute component={HomePage} />
     <Route path="/signup" component={SignUp} />
     <Route path="/login" component={LogIn} />
-    <Route path ="/testing" component={MentorSignup} />
+    <Route path ="/testing" component={SignUp} />
   </Route>
 );
