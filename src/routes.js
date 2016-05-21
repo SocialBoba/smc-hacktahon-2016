@@ -1,16 +1,21 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/app.react';
-
-import Greeting from './components/greeting.react';
-
-function Greeting1() {
-  return <div>HIiiiiiiiii!</div>;
-}
+import HomePage from './components/homepage.react';
+import SignUp from './components/signup.react';
+import LogIn from './components/login.react';
+import YouthSignup from './components/youthsignup.react';
+import MentorSignup from './components/mentorsignup.react';
+import YouthConnect from './components/youthconnect.react';
+import MentorConnect from './components/mentorconnect.react';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Greeting1} />
-    <Route path="/greet" component={Greeting} />
+    <IndexRoute component={HomePage} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/login" component={LogIn} />
+    <Route path="/mentorconnect" component={MentorConnect} />
+    <Route path="/youthconnect" component={YouthConnect} />
+    <Route path ="/testing" component={MentorConnect} />
   </Route>
 );

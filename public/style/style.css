@@ -1,0 +1,58 @@
+#container{
+  text-align: center;
+  background-color: #036cb6
+}
+.logo{
+  width: 30%;
+  margin-bottom: 25px;
+}
+.homepage{
+  height: 100%; 
+}
+.button{
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+button{
+  display: inline-block;
+  color: #fff;
+  padding: 9px 14px 9px 15.5px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  margin: 10px 0 0 10px;
+}
+.homepage .login{
+  background-color: #702C6A;
+}
+.homepage .signup{
+  background-color: #eea267;
+  bottom: -14%;
+  left: 58%;
+} 
+
+.login{
+  background-color: #fff;
+}
+
+.login input{
+  width: 50%;
+  margin: 10px;
+}
+.login span{
+  text-align: left;
+}
+.login button{
+  background-color: #036cb6;
+  float: left;
+  margin: 0 0 10px 25%;
+}
+input[type="radio"]{
+  width: 17%;
+}

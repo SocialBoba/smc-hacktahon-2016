@@ -1,0 +1,544 @@
+swagger: '2.0'
+info:
+  title: SocialBoba API
+  description: SocialBoba API
+  version: "1.0.0"
+# the domain of the service
+host: api.socialboba.org
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /mentors:
+    get:
+      summary: List of mentors signed up with SocialBoba
+      description: (WIP)
+      tags:
+        - Mentors
+      parameters:
+        - $ref: '#/parameters/limitParam'
+      responses:
+        "200":
+          description: An array of mentors
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MentorSummary'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Sign-up for a new mentor
+      description: (WIP)
+      tags:
+        - Mentor
+        - Sign-up
+      parameters:
+        - name: name
+          type: string
+          in: formData
+          description: Name of the mentor
+          required: true
+        - name: city
+          type: string
+          in: formData
+          description: City of the mentor located at
+          required: true
+        - name: state
+          type: string
+          in: formData
+          description: State of the mentor located at
+          required: true
+        - name: postal
+          type: number
+          format: int32
+          in: formData
+          required: true
+          description: A valid US postal code
+        - name: email
+          type: string
+          in: formData
+          description: Email of the mentor
+          required: true
+        - name: linkedin_url
+          type: string
+          in: formData
+          description: LinkedIn url of the mentor
+          required: true
+        - name: youtube_url
+          type: string
+          in: formData
+          description: Youtube url of the mentor
+          required: false
+        - name: specialty
+          type: number
+          format: int32
+          in: formData
+          description: (NOT IMPLEMENTED) The specialty of the mentor(tutor)
+        - name: intro
+          type: string
+          in: formData
+          description: Short introduction of the mentor
+        - name: org
+          type: string
+          in: formData
+          description: The organization(charity) which the mentor belongs to
+      responses:
+        "200":
+          description: New mentor successfully signed up
+          schema:
+            $ref: '#/definitions/MentorSummary'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /mentors/{mentor_id}:
+    get:
+      summary: Get the information of the mentor
+      description: (WIP)
+      tags:
+        - Mentor
+      parameters:
+        - name: mentor_id
+          in: path
+          required: true
+          description: The id of the mentor to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Mentor'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /mentors/login:
+    post:
+      summary: Login as a mentor
+      description: (WIP)
+      tags:
+        - Mentor
+        - Authentication
+      parameters:
+        - name: email
+          type: string
+          in: formData
+          description: Email of the mentor
+          required: true
+        - name: password
+          type: string
+          in: formData
+          description: Password of the mentor
+          required: true
+      responses:
+        "200":
+          description: Mentor successfully logged in
+          schema:
+            $ref: '#/definitions/SuccessOpWithToken'
+        "403":
+          description: Mentor failed to login
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /mentors/{mentor_id}/mentees:
+    get:
+      summary: Get the mentee list of the mentor
+      description: (WIP)
+      tags:
+        - Mentor
+        - Need Auth
+      security:
+        - Bearer: []
+      parameters:
+        - name: mentor_id
+          in: path
+          required: true
+          description: The id of the mentor to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/YouthSummary'
+        "403":
+          description: Unauthorized viewer
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /youths:
+    get:
+      summary: List of youths signed up with SocialBoba
+      description: (WIP)
+      tags:
+        - Youth
+      parameters:
+        - $ref: '#/parameters/limitParam'
+      responses:
+        "200":
+          description: An array of youths
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/YouthSummary'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Sign-up for a new youth
+      description: (WIP)
+      tags:
+        - Youth
+        - Sign-up
+      parameters:
+        - name: name
+          type: string
+          in: formData
+          description: Name of the youth
+          required: true
+        - name: city
+          type: string
+          in: formData
+          description: City of the youth located at
+          required: true
+        - name: state
+          type: string
+          in: formData
+          description: State of the youth located at
+          required: true
+        - name: postal
+          type: number
+          format: int32
+          in: formData
+          required: true
+          description: A valid US postal code
+        - name: email
+          type: string
+          in: formData
+          description: Email of the youth
+          required: true
+        - name: referral_code
+          type: string
+          in: formData
+          description: A valid referral code distributed by SocialBoba
+          required: true
+        - name: linkedin_url
+          type: string
+          in: formData
+          description: LinkedIn url of the youth
+          required: false
+        - name: youtube_url
+          type: string
+          in: formData
+          description: Youtube url of the youth
+          required: false
+        - name: intro
+          type: string
+          in: formData
+          description: Short introduction of the youth
+        - name: org
+          type: string
+          in: formData
+          description: The organization(charity) which the youth belongs to
+      responses:
+        "200":
+          description: New youth successfully signed up
+          schema:
+            $ref: '#/definitions/YouthSummary'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /youths/{youth_id}:
+    get:
+      summary: Get the information of the youth
+      description: (WIP)
+      tags:
+        - Youth
+      parameters:
+        - name: youth_id
+          in: path
+          required: true
+          description: The id of the youth to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Youth'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /youths/login:
+    post:
+      summary: Login as a youth
+      description: (WIP)
+      tags:
+        - Youth
+        - Authentication
+      parameters:
+        - name: email
+          type: string
+          in: formData
+          description: Email of the youth
+          required: true
+        - name: password
+          type: string
+          in: formData
+          description: Password of the youth
+          required: true
+      responses:
+        "200":
+          description: Youth successfully logged in
+          schema:
+            $ref: '#/definitions/SuccessOpWithToken'
+        "403":
+          description: Youth failed to login
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /youths/{youth_id}/mentors:
+    get:
+      summary: Get the mentor list of the youth
+      description: (WIP)
+      tags:
+        - Youth
+        - Need Auth
+      security:
+        - Bearer: []
+      parameters:
+        - name: youth_id
+          in: path
+          required: true
+          description: The id of the youth to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MentorSummary'
+        "403":
+          description: Unauthorized viewer
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /youths/{youth_id}/match:
+    post:
+      summary: Make a match with a mentor, if haven't matched one before
+      description: (WIP)
+      tags:
+        - Youth
+        - Need Auth
+      security:
+        - Bearer: []
+      parameters:
+        - name: youth_id
+          in: path
+          required: true
+          description: The id of the youth to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            type: object
+            properties:
+              result:
+                $ref: '#/definitions/SuccessOpResult'
+              mentor:
+                $ref: '#/definitions/MentorSummary'
+        "403":
+          description: Unauthorized operation
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+        "409":
+          description: |
+            Cannot find a match, or the youth has already matched with a mentor.
+            Error code: `match_none` or `match_conflict`
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  MentorSummary:
+    type: object
+    required:
+      - mentor_id
+      - name
+      - location
+    properties:
+      mentor_id:
+        type: number
+      name:
+        type: string
+      location:
+        $ref: '#/definitions/Location'
+      social_links:
+        $ref: '#/definitions/SocialLinks'
+  Mentor:
+    type: object
+    required:
+      - mentor_id
+      - name
+      - email
+      - location
+    properties:
+      mentor_id:
+        type: number
+      name:
+        type: string
+      email:
+        type: string
+      location:
+        $ref: '#/definitions/Location'
+      social_links:
+        $ref: '#/definitions/SocialLinks'
+      specialty:
+        type: string
+        description: (NOT IMPLEMENTED)
+      intro:
+        type: string
+      org:
+        type: string
+      profile_pic_url:
+        type: string
+  Location:
+    type: object
+    properties:
+      city:
+        type: string
+      state:
+        type: string
+      postal:
+        type: number
+        format: int32
+        description: A valid US postal code
+  SocialLinks:
+    type: object
+    properties:
+      linkedin_url:
+        type: string
+        default: undefined
+      youtube_url:
+        type: string
+        default: undefined
+  YouthSummary:
+    type: object
+    required:
+      - youth_id
+      - name
+      - location
+    properties:
+      youth_id:
+        type: number
+      name:
+        type: string
+      location:
+        $ref: '#/definitions/Location'
+      social_links:
+        $ref: '#/definitions/SocialLinks'
+  Youth:
+    type: object
+    required:
+      - youth_id
+      - name
+      - email
+      - location
+    properties:
+      youth_id:
+        type: number
+      name:
+        type: string
+      email:
+        type: string
+      location:
+        $ref: '#/definitions/Location'
+      social_links:
+        $ref: '#/definitions/SocialLinks'
+      intro:
+        type: string
+      org:
+        type: string
+      profile_pic_url:
+        type: string
+  SuccessOpWithToken:
+    type: object
+    properties:
+      id:
+        type: number
+      result:
+        $ref: '#/definitions/SuccessOpResult'
+      token:
+        type: string
+        description: JSON Web Token
+  SuccessOpResult:
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        default: "success"
+      message:
+        type: string
+  UnauthorizedError:
+    type: object
+    properties:
+      message:
+        type: string
+      code:
+        type: string
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+      code:
+        type: string
+
+parameters:
+  limitParam:
+    name: limit
+    in: query
+    description: max records to return
+    required: false
+    type: integer
+    format: int32
