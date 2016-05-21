@@ -1,5 +1,7 @@
 "use strict"
 var _ = require('lodash');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 var models = require('../models');
 
@@ -20,7 +22,34 @@ mentor_router.get("/:id", function(req, res) {
 });
 
 mentor_router.post("/", function(req, res) {
-  var body = req.body;
+  var data = req.body;
+});
+
+var pwd_secret = require(__dirname + '/../config/config.json').pwd_secret;
+var jwt_secret = require(__dirname + '/../config/config.json').jwt_secret;
+
+mentor_router.post("/login", function(req, res) {
+  var data = req.body;
+  models.Mentor.findOne({ where: {email: data.email} }).then(function(mentor) {
+    if (mentor) {
+      if (bcrypt.compareSync(data.password, mentor.password_hashed)) {
+          var token = jwt.sign({
+            type: 'mentor',
+            id: mentor.id,
+            sub: 'auth-login'
+          }, jwt_secret);
+
+          res.send({
+            id: mentor.id,
+            token: token,
+            result: {
+              status: 'success',
+              message: ''
+            }
+          });
+      }
+    }
+  });
 });
 
 var MentorSummary = function(mentor) {
