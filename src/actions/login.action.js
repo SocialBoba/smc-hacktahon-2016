@@ -4,7 +4,7 @@ export const LOGIN_YOUTH = 'LOGIN_YOUTH';
 export const LOGIN_MENTOR = 'LOGIN_MENTOR';
 
 export function loginYouth(data) {
-  const request = Axios.post('/youths/login', data);
+  const request = Axios.post('/api/v1/youths/login', data);
 
   return {
     type: LOGIN_YOUTH,
@@ -13,7 +13,7 @@ export function loginYouth(data) {
 }
 
 export function loginMentor(data) {
-  const request = Axios.post('/mentors/login', data);
+  const request = Axios.post('/api/v1/mentors/login', data);
 
   return {
     type: LOGIN_MENTOR,

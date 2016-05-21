@@ -22,19 +22,28 @@ class LogIn extends Component {
   _handleSubmit = (event) => {
     event.preventDefault();
     const {email, password, type} = this.state;
-    const {loginYouth, loginMentor} = this.props;
+    const {loginYouth, loginMentor, token} = this.props;
     if(email && password) {
       if(type === "youth") {
-        this.props.loginYouth({email, password});
+        this.props.loginYouth({email, password})
+          .then((i) => {
+            localStorage.setItem('token', i.payload.data.token);
+            localStorage.setItem('id', i.payload.data.id);
+          });
       }
       else {
-        this.props.loginMentor({email, password});
+        this.props.loginMentor({email, password})
+          .then((i) => {
+            localStorage.setItem('token', i.payload.data.token);
+            localStorage.setItem('id', i.payload.data.id);
+          });
       }
     }
   }
   
   render(){
     const {email, password} = this.state;
+
     return (
       <div>
         <form onSubmit={this._handleSubmit}>
@@ -52,4 +61,11 @@ class LogIn extends Component {
   }
 }
 
-export default connect(null, {loginYouth, loginMentor})(LogIn);
+function mapStateToProps(state) {
+  return {
+    id: state.login.id,
+    token: state.login.token
+  };
+}
+
+export default connect(mapStateToProps, {loginYouth, loginMentor})(LogIn);
