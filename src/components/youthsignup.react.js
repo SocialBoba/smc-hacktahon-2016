@@ -1,6 +1,8 @@
 import React, {  Component } from 'react';
+import { connect } from 'react-redux';
+import { signupYouth } from '../actions/signup.action';
 
-export default class YouthSignup extends Component {
+class YouthSignup extends Component {
 
   constructor(props){
     super(props);
@@ -10,8 +12,9 @@ export default class YouthSignup extends Component {
       city: '',
       state: '',
       postal: '',
-      about: '',
-      group: ''
+      intro: '',
+      group: '',
+      referral: ''
     };
   }
 
@@ -23,11 +26,14 @@ export default class YouthSignup extends Component {
 
   _handleSubmit = (event) => {
     event.preventDefault();
-    const {name, email, city, state, postal, about, group} = this.state;
+    const {name, email, city, state, postal, intro, group, referral} = this.state;
+    if(name && email && city && state && postal && referral) {
+      this.props.signupYouth({name, email, city, state, postal, intro, group, referral});
+    }
   }
   
   render(){
-    const {name, email, city, state, postal, about, group} = this.state;
+    const {name, email, city, state, postal, intro, group, referral} = this.state;
 
     return (
       <form onSubmit={this._handleSubmit}>
@@ -53,8 +59,12 @@ export default class YouthSignup extends Component {
           <input type="text" name="postal" value={postal} onChange={this._handleChange}/>
         </div>
         <div>
-          <label>About Yourself</label>
-          <textarea name="about" value={about} onChange={this._handleChange} />
+          <label>Referral Code</label>
+          <input type="text" name="referral" value={referral} onChange={this._handleChange}/>
+        </div>
+        <div>
+          <label>Introduce Yourself</label>
+          <textarea name="intro" value={intro} onChange={this._handleChange} />
         </div>
         <div>
           Organization: <input type="radio" name="group" value="organization" onChange={this._handleChange} /> 
@@ -65,3 +75,5 @@ export default class YouthSignup extends Component {
     );
   }
 }
+
+export default connect(null, {signupYouth})(YouthSignup);

@@ -23,11 +23,13 @@ class LogIn extends Component {
     event.preventDefault();
     const {email, password, type} = this.state;
     const {loginYouth, loginMentor} = this.props;
-    if(type === "youth") {
-      this.props.loginYouth();
-    }
-    else {
-      this.props.loginMentor();
+    if(email && password) {
+      if(type === "youth") {
+        this.props.loginYouth({email, password});
+      }
+      else {
+        this.props.loginMentor({email, password});
+      }
     }
   }
   
