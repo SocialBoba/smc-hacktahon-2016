@@ -56,3 +56,30 @@ button{
 input[type="radio"]{
   width: 17%;
 }
+.mentor-profile{
+  text-align: left;
+}
+.mentor-profile section{
+  background-color: #fff;
+  height: 125px;
+}
+.profile-logo{
+  float: left;
+  width: 10%;
+  padding: 0 10px;
+}
+.mentor-profile section p{
+  color: #036cb6;
+  text-transform: uppercase;
+  font-size: 32px;
+}
+.profile-pic{
+  width: 20%;
+  padding: 10px;
+}
+.mentor-profile div div, .mentor-profile p, .mentor-profile span, .mentor-profile p span{
+  margin-left: 10px;
+}
+.mentor-profile div div:first-child{
+  margin-left: 21px;
+}
