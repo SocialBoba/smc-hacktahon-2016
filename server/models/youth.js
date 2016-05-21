@@ -3,6 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var Youth = sequelize.define('Youth', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
+    password_hashed: DataTypes.STRING,
+    salt: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     postal: DataTypes.INTEGER,
@@ -14,7 +16,14 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Youth.belongsToMany(models.Mentor,{
+          through: {
+            model: models.Match,
+            unique: false
+          },
+          foreignKey: 'youth_id'
+        });
+
       }
     }
   });
