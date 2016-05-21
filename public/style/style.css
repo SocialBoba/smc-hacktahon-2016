@@ -51,5 +51,8 @@ button{
 .login button{
   background-color: #036cb6;
   float: left;
-  margin-left: 25%;
+  margin: 0 0 10px 25%;
+}
+input[type="radio"]{
+  width: 17%;
 }
