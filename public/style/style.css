@@ -56,3 +56,54 @@ button{
 input[type="radio"]{
   width: 17%;
 }
+.profile{
+  text-align: center;
+}
+.profile section{
+  background-color: #fff;
+  height: 125px;
+}
+.profile-logo{
+  float: left;
+  width: 10%;
+  padding: 0 10px;
+}
+.profile section p{
+  color: #036cb6;
+  text-transform: uppercase;
+  font-size: 32px;
+  text-align: left;
+}
+.profile-pic{
+  width: 20%;
+  padding: 10px;
+}
+.mentor-profile div div, .mentor-profile p, .mentor-profile span, .mentor-profile p span{
+  margin-left: 10px;
+}
+.mentor-profile div div:first-child{
+  margin-left: 21px;
+}
+.youth-profile button{
+  background: #38939b;
+}
+.youth-pic{
+  width: 10%;
+}
+
+.youth-profile .button{
+  text-align: center;
+}
+ul{
+  margin: 0 37%;
+  text-align: left;
+  width: 20%;
+}
+.youth-profile span{
+  color: #fff;
+}
+
+li {
+    color: #fff;
+    list-style-type: none;
+}
