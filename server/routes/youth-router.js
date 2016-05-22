@@ -77,38 +77,75 @@ youth_router.post("/login", function(req, res) {
   });
 });
 
-var MentorSummary = function(mentor) {
+youth_router.get("/:id/mentors", function(req, res) {
+  var sent = false;
+
+  var token = req.get("Authorization");
+  if (token) token = token.split("Bearer ")[1];
+
+  if (token) {
+    try {
+      var decoded = jwt.verify(token, jwt_secret);
+      if (decoded) {
+        if (decoded.type == 'youth' && decoded.id == req.params.id) {
+          models.Youth.findById(req.params.id).then(function(youth) {
+            var mentor = youth.getMentor().then(function(m) {
+              var result = _.map(m, MentorSummary);
+              res.send(result);
+              sent = true;
+              return ;
+            });
+          });
+        }
+      }
+    } catch(err) {
+      res.status(403).send(
+        ApiError.AuthorizationError("Wrong token or expired", "auth-failure")
+      );
+
+      return ;
+    }
+  } else {
+    res.status(403).send(
+      ApiError.AuthorizationError("Access denied. No token supplied.", "auth-failure")
+    );
+  }
+
+  return ;
+});
+
+var YouthSummary = function(youth) {
   return {
-    mentor_id: mentor.id,
-    name: mentor.name,
+    youth_id: youth.id,
+    name: youth.name,
     location: {
-      city: mentor.city,
-      state: mentor.state,
-      postal: mentor.postal,
+      city: youth.city,
+      state: youth.state,
+      postal: youth.postal,
     },
     social_links: {
-      linkedin_url: mentor.linkedin_url,
-      youtube_url: mentor.youtube_url,
+      linkedin_url: youth.linkedin_url,
+      youtube_url: youth.youtube_url,
     },
   }
 };
 
-var Mentor = function(mentor) {
+var Youth = function(youth) {
   return {
-    mentor_id: mentor.id,
-    name: mentor.name,
+    youth_id: youth.id,
+    name: youth.name,
     location: {
-      city: mentor.city,
-      state: mentor.state,
-      postal: mentor.postal,
+      city: youth.city,
+      state: youth.state,
+      postal: youth.postal,
     },
     social_links: {
-      linkedin_url: mentor.linkedin_url,
-      youtube_url: mentor.youtube_url,
+      linkedin_url: youth.linkedin_url,
+      youtube_url: youth.youtube_url,
     },
-    intro: mentor.intro,
-    org: mentor.org,
-    profile_pic_url: mentor.profile_pic_url
+    intro: youth.intro,
+    org: youth.org,
+    profile_pic_url: youth.profile_pic_url
   }
 };
 
