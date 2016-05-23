@@ -35,7 +35,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
     post:
       summary: Sign-up for a new mentor
       description: (WIP)
@@ -105,7 +105,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /mentors/{mentor_id}:
     get:
@@ -127,7 +127,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /mentors/login:
     post:
@@ -159,7 +159,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /mentors/{mentor_id}/mentee:
     get:
@@ -190,7 +190,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /youths:
     get:
@@ -210,7 +210,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
     post:
       summary: Sign-up for a new youth
       description: (WIP)
@@ -280,7 +280,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /youths/{youth_id}:
     get:
@@ -302,7 +302,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /youths/login:
     post:
@@ -334,7 +334,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /youths/{youth_id}/mentors:
     get:
@@ -365,7 +365,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
   /youths/{youth_id}/match:
     post:
@@ -401,11 +401,11 @@ paths:
             Cannot find a match, or the youth has already matched with a mentor.
             Error code: `match_none` or `match_conflict`
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/GeneralError'
 
 definitions:
   MentorSummary:
@@ -536,7 +536,7 @@ definitions:
         type: string
       code:
         type: string
-  Error:
+  GeneralError:
     type: object
     properties:
       message:

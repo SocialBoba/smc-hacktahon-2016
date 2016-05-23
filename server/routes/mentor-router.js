@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
 var models = require('../models');
+var ApiError = require('../util/api-error')
 
 var express = require('express');
 var mentor_router = express.Router();
@@ -68,17 +69,20 @@ mentor_router.post("/login", function(req, res) {
       }
     }
 
-    res.status(403).send({
-      message: "Wrong email/password",
-      code: "auth-failure"
-    });
+    res.status(403).send(
+      ApiError.AuthorizationError("Wrong email/password", "auth-failure")
+    );
 
     return ;
   });
 });
 
 mentor_router.get("/:id/mentee", function(req, res) {
-  var token = req.get("Authorization").split("Bearer ")[1];
+  var sent = false;
+
+  var token = req.get("Authorization");
+  if (token) token = token.split("Bearer ")[1];
+
   if (token) {
     try {
       var decoded = jwt.verify(token, jwt_secret);
@@ -88,20 +92,26 @@ mentor_router.get("/:id/mentee", function(req, res) {
             var mentee = mentor.getMentee().then(function(m) {
               var result = _.map(m, YouthSummary);
               res.send(result);
+              sent = true;
               return ;
             });
           });
         }
       }
-    } catch(err) {}
-    //
-    // res.status(403).send({
-    //   message: "Mentee fetch error",
-    //   code: "auth-failure"
-    // });
+    } catch(err) {
+      res.status(403).send(
+        ApiError.AuthorizationError("Wrong token or expired", "auth-failure")
+      );
+
+      return ;
+    }
+  } else {
+    res.status(403).send(
+      ApiError.AuthorizationError("Access denied. No token supplied.", "auth-failure")
+    );
   }
 
-  return token;
+  return ;
 });
 
 var MentorSummary = function(mentor) {
