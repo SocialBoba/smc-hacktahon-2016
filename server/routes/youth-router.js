@@ -1,12 +1,17 @@
 "use strict"
 var _ = require('lodash');
-var bcrypt = require('bcrypt');
+var sjcl = require('sjcl');
 var jwt = require('jsonwebtoken');
 
 var models = require('../models');
+var ApiError = require('../util/api-error');
 
 var express = require('express');
 var youth_router = express.Router();
+
+var secrets = require(__dirname + '/../config/secrets.json');
+var pwd_secret = secrets.pwd_secret;
+var jwt_secret = secrets.jwt_secret;
 
 youth_router.get("/", function(req, res) {
   models.Youth.findAll().then(function(youths) {
@@ -24,10 +29,9 @@ youth_router.get("/:id", function(req, res) {
 youth_router.post("/", function(req, res) {
   var data = req.body;
 
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(data.password, salt);
+  var encrypted = sjcl.encrypt(pwd_secret, data.password);
+  data.password_hashed = encrypted;
 
-  data.password_hashed = hash;
   models.Youth.create(data).then(function(youth) {
     var token = jwt.sign({
       type: 'youth',
@@ -42,13 +46,11 @@ youth_router.post("/", function(req, res) {
   });
 });
 
-var jwt_secret = require(__dirname + '/../config/secrets.json').jwt_secret;
-
 youth_router.post("/login", function(req, res) {
   var data = req.body;
   models.Youth.findOne({ where: {email: data.email} }).then(function(youth) {
     if (youth) {
-      if (bcrypt.compareSync(data.password, youth.password_hashed)) {
+      if (data.password === sjcl.decrypt(pwd_secret, youth.password_hashed)) {
           var token = jwt.sign({
             type: 'youth',
             id: youth.id,
@@ -68,10 +70,9 @@ youth_router.post("/login", function(req, res) {
       }
     }
 
-    res.status(403).send({
-      message: "Wrong email/password",
-      code: "auth-failure"
-    });
+    res.status(403).send(
+      ApiError.AuthorizationError("Wrong email/password", "auth-failure")
+    );
 
     return ;
   });
@@ -149,38 +150,38 @@ var Youth = function(youth) {
   }
 };
 
-var YouthSummary = function(youth) {
+var MentorSummary = function(mentor) {
   return {
-    youth_id: youth.id,
-    name: youth.name,
+    mentor_id: mentor.id,
+    name: mentor.name,
     location: {
-      city: youth.city,
-      state: youth.state,
-      postal: youth.postal,
+      city: mentor.city,
+      state: mentor.state,
+      postal: mentor.postal,
     },
     social_links: {
-      linkedin_url: youth.linkedin_url,
-      youtube_url: youth.youtube_url,
+      linkedin_url: mentor.linkedin_url,
+      youtube_url: mentor.youtube_url,
     },
   }
 };
 
-var Youth = function(youth) {
+var Mentor = function(mentor) {
   return {
-    youth_id: youth.id,
-    name: youth.name,
+    mentor_id: mentor.id,
+    name: mentor.name,
     location: {
-      city: youth.city,
-      state: youth.state,
-      postal: youth.postal,
+      city: mentor.city,
+      state: mentor.state,
+      postal: mentor.postal,
     },
     social_links: {
-      linkedin_url: youth.linkedin_url,
-      youtube_url: youth.youtube_url,
+      linkedin_url: mentor.linkedin_url,
+      youtube_url: mentor.youtube_url,
     },
-    intro: youth.intro,
-    org: youth.org,
-    profile_pic_url: youth.profile_pic_url
+    intro: mentor.intro,
+    org: mentor.org,
+    profile_pic_url: mentor.profile_pic_url
   }
 };
 

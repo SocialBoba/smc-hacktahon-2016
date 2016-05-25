@@ -7,7 +7,7 @@ module.exports = {
     return queryInterface.bulkInsert('Youths', [
       {
         name: 'Patricia Leeper',
-        email: 'PatriciaWLeeper@ggmail.io',
+        email: 'pl@aa.com',
         city: 'San Mateo',
         state: 'CA',
         postal: 94401,
@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         name: 'Melissa M. Lurie',
-        email: 'MelissaMLurie@ggmail.io',
+        email: 'ml@aa.com',
         city: 'San Mateo',
         state: 'CA',
         postal: 94402,
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         name: 'James L. Phillips',
-        email: 'JameLPhillips@ggmail.io',
+        email: 'jp@aa.com',
         city: 'San Mateo',
         state: 'CA',
         postal: 94403,

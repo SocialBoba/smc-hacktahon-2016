@@ -27,7 +27,6 @@
   "dependencies": {
     "axios": "^0.9.1",
     "babel-preset-stage-1": "^6.1.18",
-    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
     "bower": "^1.7.7",
     "express": "^4.13.4",
@@ -44,6 +43,7 @@
     "redux": "^3.3.1",
     "redux-promise": "^0.5.1",
     "sequelize": "^3.23.2",
-    "sequelize-cli": "^2.4.0"
+    "sequelize-cli": "^2.4.0",
+    "sjcl": "^1.0.3"
   }
 }

@@ -1,13 +1,17 @@
 "use strict"
 var _ = require('lodash');
-var bcrypt = require('bcrypt');
+var sjcl = require('sjcl');
 var jwt = require('jsonwebtoken');
 
 var models = require('../models');
-var ApiError = require('../util/api-error')
+var ApiError = require('../util/api-error');
 
 var express = require('express');
 var mentor_router = express.Router();
+
+var secrets = require(__dirname + '/../config/secrets.json');
+var pwd_secret = secrets.pwd_secret;
+var jwt_secret = secrets.jwt_secret;
 
 mentor_router.get("/", function(req, res) {
   models.Mentor.findAll().then(function(mentors) {
@@ -25,10 +29,9 @@ mentor_router.get("/:id", function(req, res) {
 mentor_router.post("/", function(req, res) {
   var data = req.body;
 
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(data.password, salt);
+  var encrypted = sjcl.encrypt(pwd_secret, data.password);
+  data.password_hashed = encrypted;
 
-  data.password_hashed = hash;
   models.Mentor.create(data).then(function(mentor) {
     var token = jwt.sign({
       type: 'mentor',
@@ -43,13 +46,11 @@ mentor_router.post("/", function(req, res) {
   });
 });
 
-var jwt_secret = require(__dirname + '/../config/secrets.json').jwt_secret;
-
 mentor_router.post("/login", function(req, res) {
   var data = req.body;
   models.Mentor.findOne({ where: {email: data.email} }).then(function(mentor) {
     if (mentor) {
-      if (bcrypt.compareSync(data.password, mentor.password_hashed)) {
+      if (data.password === sjcl.decrypt(pwd_secret, mentor.password_hashed)) {
           var token = jwt.sign({
             type: 'mentor',
             id: mentor.id,

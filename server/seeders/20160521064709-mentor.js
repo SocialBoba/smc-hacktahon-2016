@@ -7,8 +7,9 @@ module.exports = {
     return queryInterface.bulkInsert('Mentors', [
       {
         name: 'Matthew E. McKim',
-        email: 'me@ggmail.io',
-        password_hashed: '$2a$10$m0WSYrp/vXwk2EOH7oLGZOTjyEmxifakKc2he9aETI9pyFL3V4Sk.',
+        email: 'mm@aa.com',
+        password_hashed: '{"iv":"cwYvYAHILD5//FNTLVoElQ==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"gXj35/tPI+Q=","ct":"H91/YsrpVBI70IjkddVc"}',
+        // password: test123
         city: 'San Mateo',
         state: 'CA',
         postal: 94401,
@@ -17,7 +18,7 @@ module.exports = {
       },
       {
         name: 'Patrick W. Wilson',
-        email: 'PatrickWWilson@ggmail.io',
+        email: 'pw@aa.com',
         city: 'San Mateo',
         state: 'CA',
         postal: 94402,
